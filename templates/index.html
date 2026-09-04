@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Resume Analyzer</h1>
+
+        <p class="subtitle">
+            Analyze your resume based on job requirements
+        </p>
+
+        <form method="POST">
+
+            <label>Paste Your Resume</label>
+
+            <textarea
+                name="resume"
+                placeholder="Enter your resume details here..."
+                required
+            ></textarea>
+
+
+            <label>Enter Job Description</label>
+
+            <textarea
+                name="job_description"
+                placeholder="Enter the job requirements here..."
+                required
+            ></textarea>
+
+
+            <button type="submit">Analyze Resume</button>
+
+        </form>
+
+
+        {% if score is not none %}
+
+        <div class="result">
+
+            <h2>Analysis Result</h2>
+
+            <div class="score">
+                Resume Match Score: {{ score }}%
+            </div>
+
+
+            <div class="skills">
+
+                <div class="matched">
+
+                    <h3>✅ Matched Skills</h3>
+
+                    {% if matched_skills %}
+
+                        <ul>
+
+                            {% for skill in matched_skills %}
+
+                            <li>{{ skill }}</li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% else %}
+
+                        <p>No skills matched.</p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="missing">
+
+                    <h3>❌ Missing Skills</h3>
+
+                    {% if missing_skills %}
+
+                        <ul>
+
+                            {% for skill in missing_skills %}
+
+                            <li>{{ skill }}</li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% else %}
+
+                        <p>No missing skills.</p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
