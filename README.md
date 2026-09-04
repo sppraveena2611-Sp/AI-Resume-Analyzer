@@ -48,10 +48,6 @@ pip install flask
 
 python app.py
 
-### Open in Browser
-
-http://127.0.0.1:5000
-
 ## Author
 
 Praveena
